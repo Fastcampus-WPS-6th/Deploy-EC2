@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -27,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '.ap-northeast-2.compute.amazonaws.com',
+    '.pikachu.kr',
 ]
 
 # Application definition
@@ -75,8 +77,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'fastcampus-6th-database.cbh0z90tivjt.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '5432',
+        'NAME': 'deploy',
+        'USER': 'lhy',
+        'PASSWORD': 'dlgksdud',
     }
 }
 
@@ -119,6 +125,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+# ec2_deploy_project/.static_root/
+# gitignore에 아래 폴더가 추가되도록 설정
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static_root')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
