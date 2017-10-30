@@ -26,9 +26,13 @@ AWS_ACCESS_KEY_ID = config_secret['aws']['access_key_id']
 AWS_SECRET_ACCESS_KEY = config_secret['aws']['secret_access_key']
 AWS_STORAGE_BUCKET_NAME = config_secret['aws']['s3_bucket_name']
 
+# AWS Storage
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+
 # S3 FileStorage
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'config.storages.MediaStorage'
+STATICFILES_STORAGE = 'config.storages.StaticStorage'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'r8zs9qr81s&^717n7pizb6jm9z-*l8g&atj*x(_a8wqym*qsnr'
@@ -146,6 +150,7 @@ STATICFILES_DIRS = [
 # ec2_deploy_project/.static_root/
 # gitignore에 아래 폴더가 추가되도록 설정
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static_root')
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
